@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${segoeUI.className}  font-sans`}>
+      <body className={`${segoeUI.className} `}>
         <Header />
         {children}
         <Footer />

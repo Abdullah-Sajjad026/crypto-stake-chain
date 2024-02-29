@@ -1,34 +1,42 @@
+import ASSETS from "@/app/assets";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
+
 const Hero = () => {
   return (
     <section className="main-bg">
-      <div className="container flex py-24 md:flex-row flex-col items-center">
-        <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-            Before they sold out
-            <br className="hidden lg:inline-block" />
-            readymade gluten
+      <div className="container flex min-h-screen pt-32 pb-48 md:flex-row flex-col items-center">
+        <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-4 md:mb-0 items-center text-center gap-4">
+          <h2 className="text-white text-title">
+            Amplify Your Cross-Chain Staking
+          </h2>
+          <h1 className="text-4xl font-bold">
+            Experience
+            <span className="text-primary"> 100K STAKE</span>, your gateway to
+            unbounded earnings in decentralized staking, powered by our robust
+            smart contracts
           </h1>
-          <p className="mb-8 leading-relaxed">
-            Copper mug try-hard pitchfork pour-over freegan heirloom neutra air
-            plant cold-pressed tacos poke beard tote bag. Heirloom echo park
-            mlkshk tote bag selvage hot chicken authentic tumeric truffaut
-            hexagon try-hard chambray.
-          </p>
-          <div className="flex justify-center">
-            <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-              Button
-            </button>
-            <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-              Button
-            </button>
+          <h2 className="text-white text-title">
+            Stake, Earn, Soar with 100K STAKE.
+          </h2>
+          <div className="flex gap-4 items-center">
+            <Button>Stake</Button>
+            <Button variant="outline">Litepaper</Button>
           </div>
         </div>
-        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-          <img
+        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-4/6 mx-auto">
+          <Image
             className="object-cover object-center rounded"
             alt="hero"
-            src="https://dummyimage.com/720x600"
+            src={ASSETS.doodleMoneyBank}
           />
+          <div className="flex-items-center justify-center mt-12">
+            <Card className="border-white mx-auto bg-white bg-opacity-30 backdrop-filter backdrop-blur-md backdrop-saturate-150 w-64 rounded-3xl text-center">
+              <CardTitle>Total Value Locked</CardTitle>
+              <h2 className="text-section text-primary">$1,000,000,000</h2>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
