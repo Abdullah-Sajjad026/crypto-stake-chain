@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
 import Hero from "./components/hero";
 import Features from "./components/features";
 import Partners from "./components/partners";
 import Investors from "./components/investors";
-import TeamMembers from "@/components/team-members";
 import OurTeam from "./components/team";
+import TrustyPlatform from "./components/trusty-platform";
+import Footer from "@/app/components/footer";
 
 export default function Home() {
   return (
@@ -14,6 +14,10 @@ export default function Home() {
       <Partners />
       <Investors />
       <OurTeam />
+      <div className="main-bg top-white-layer">
+        <TrustyPlatform />
+        <Footer />
+      </div>
     </>
   );
 }

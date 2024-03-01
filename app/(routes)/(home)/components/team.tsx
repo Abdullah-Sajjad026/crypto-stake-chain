@@ -6,9 +6,7 @@ const OurTeam = () => {
     <section className="py-16">
       <div className="container">
         <TitleBox title="Our Team" />
-        <div className="pt-12">
-          <TeamMembers />
-        </div>
+        <TeamMembers />
       </div>
     </section>
   );

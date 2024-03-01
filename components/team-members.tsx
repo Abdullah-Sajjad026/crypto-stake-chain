@@ -2,7 +2,6 @@ import ASSETS from "@/app/assets";
 import Image, { StaticImageData } from "next/image";
 
 const TeamMembers = () => {
-  // Alex Wilson General Manager,Jonathan Johnston Senior Solidity Engineer, Mason Jones Senior Blockchain Engineer, Edward Taylor Senior Blockchain Engineer, Nicholas Swan Marketing & Community Manage
   const teamMembers = [
     {
       image: ASSETS.staff.lead,
@@ -41,7 +40,7 @@ const TeamMembers = () => {
     <section>
       <div className="container">
         <div className="flex flex-col items-center justify-center gap-16 pt-12">
-          <TeamMember {...teamMembers[0]} />
+          <TeamMember {...teamMembers[0]} imgClasses="w-60 h-60 " />
           <div className="flex flex-wrap justify-center gap-16">
             {teamMembers.slice(1).map((member, index) => (
               <TeamMember key={index} {...member} />
@@ -53,17 +52,21 @@ const TeamMembers = () => {
   );
 };
 
-const TeamMember = (props: {
+const TeamMember = ({
+  imgClasses = "",
+  ...props
+}: {
   image: StaticImageData;
   name: string;
   role: string;
+  imgClasses?: string;
 }) => {
   return (
     <div className="flex flex-col items-center ">
       <Image
         src={props.image}
         alt={props.name}
-        className="w-40 h-40 object-contain rounded-full mb-4"
+        className={`w-48 h-48 object-contain rounded-full mb-4 ${imgClasses}`}
       />
       <h4 className="text-block">{props.name}</h4>
       <p className="text-muted-foreground">{props.role}</p>

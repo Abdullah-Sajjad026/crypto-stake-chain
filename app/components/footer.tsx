@@ -1,7 +1,53 @@
+import Link from "next/link";
+
 const Footer = () => {
+  const navLinks = [
+    {
+      title: "Privacy Policy",
+      href: "/privacy-policy",
+    },
+    {
+      title: "Terms & Conditions",
+      href: "/terms-conditions",
+    },
+    {
+      title: "Cookie Policy",
+      href: "/cookie-policy",
+    },
+  ];
+
   return (
-    <footer className="">
-      <div className="container"></div>
+    <footer className="bg-transparent py-10 ">
+      <div className="container">
+        <div className="flex justify-between items-center gap-x-4">
+          <nav className="flex gap-x-4">
+            {navLinks.map((link, index) => (
+              <Link
+                href={link.href}
+                key={index}
+                className="text-muted-foreground"
+              >
+                {link.title}
+              </Link>
+            ))}
+          </nav>
+          <p className="text-muted-foreground">
+            Copyright © {2022} 100K STAKE. All rights reserved
+          </p>
+        </div>
+        <div className="mt-8 flex justify-between items-center gap-x-4">
+          <div>
+            <div className="flex gap-x-4 items-center">
+              <span className="text-muted-foreground">Email:</span>
+              support@100kstake.com
+            </div>
+            <div className="flex gap-x-4 items-center">
+              <span className="text-muted-foreground">Address:</span>
+              70 City Road,Southbank Melbourne, VIC 3006 Australi
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

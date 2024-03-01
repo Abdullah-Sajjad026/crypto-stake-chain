@@ -5,9 +5,11 @@ import DoodleMoneyBank from "./doodle-money-bank.png";
 
 import CalculatorIcon from "./icons/calculator.png";
 import DollarCoinIcon from "./icons/dollar-coin.png";
-import LockSearchIcon from "./icons/lock-search.png";
 import VpnSecurityIcon from "./icons/vpn.png";
 import ScoresIcon from "./icons/scores.png";
+import LockSearchIcon from "./icons/lock-search.png";
+import IPFSIcon from "./icons/ipfs.png";
+import DiamondIcon from "./icons/diamond.png";
 
 import Partner1 from "./respect/partner-1.svg";
 import Partner2 from "./respect/partner-2.svg";
@@ -44,9 +46,12 @@ const ASSETS = {
   icons: {
     calculator: CalculatorIcon,
     dollarCoin: DollarCoinIcon,
-    lockSearch: LockSearchIcon,
     vpnSecurity: VpnSecurityIcon,
     scores: ScoresIcon,
+
+    lockSearch: LockSearchIcon,
+    ipfs: IPFSIcon,
+    diamond: DiamondIcon,
   },
 
   partners: {
