@@ -42,9 +42,9 @@ const TeamMembers = () => {
         <div className="flex flex-col items-center justify-center gap-y-20 pt-12">
           <TeamMember {...teamMembers[0]} imgClasses="w-56 h-56" />
 
-          <div className="flex flex-wrap justify-center gap-y-20">
+          <div className="flex flex-wrap justify-center gap-x-20 lg:gap-x-0 gap-y-20">
             {teamMembers.slice(1).map((member, index) => (
-              <div className=" md:w-2/3 lg:w-1/3" key={index}>
+              <div className="lg:w-1/3" key={index}>
                 <TeamMember {...member} />
               </div>
             ))}

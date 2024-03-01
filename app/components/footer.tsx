@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <footer className="bg-transparent py-10 ">
       <div className="container">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
           <nav className="flex gap-x-4">
             {navLinks.map((link, index) => (
               <Link
