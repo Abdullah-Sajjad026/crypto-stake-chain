@@ -10,7 +10,7 @@ const Hero = () => {
           <h1 className="text-section mb-12">
           Invite friends, earn rewards          </h1>
           <p className="text-lg text-gray-600 mb-16">
-          Simply invite your friends with your referral link and earn up to 15% InfinityStakeChain commission from the referral. It's as easy as that!
+          Simply invite your friends with your referral link and earn up to 15% InfinityStakeChain commission from the referral. Its as easy as that!
           </p>
           <Button>
             Get My Referral Link
