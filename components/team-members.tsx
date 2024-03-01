@@ -39,11 +39,12 @@ const TeamMembers = () => {
   return (
     <section>
       <div className="container">
-        <div className="flex flex-col items-center justify-center gap-y-24 pt-12">
-          <TeamMember {...teamMembers[0]} imgClasses="w-64 h-64 " />
-          <div className="flex flex-wrap justify-center gap-y-24">
+        <div className="flex flex-col items-center justify-center gap-y-20 pt-12">
+          <TeamMember {...teamMembers[0]} imgClasses="w-56 h-56" />
+
+          <div className="flex flex-wrap justify-center gap-y-20">
             {teamMembers.slice(1).map((member, index) => (
-              <div className="w-1/3" key={index}>
+              <div className=" md:w-2/3 lg:w-1/3" key={index}>
                 <TeamMember {...member} />
               </div>
             ))}
