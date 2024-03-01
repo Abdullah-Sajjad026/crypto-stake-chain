@@ -6,7 +6,7 @@ import OurTeam from "./components/team";
 import TrustyPlatform from "./components/trusty-platform";
 import Footer from "@/app/components/footer";
 
-export default function Home() {
+export default function PageHome() {
   return (
     <>
       <Hero />
