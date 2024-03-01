@@ -52,6 +52,10 @@
 }
 
 @layer utilities {
+  p {
+    @apply text-base leading-normal;
+  }
+
   .text-section {
     @apply text-3xl font-bold leading-8 lg:leading-10;
   }
@@ -69,5 +73,5 @@
   background-image: url("../app/assets/hero-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: top;
 }

@@ -1,6 +1,7 @@
 import ASSETS from "@/app/assets";
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import TitleBox from "@/components/ui/title-box";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -49,36 +50,35 @@ const Features = () => {
   ];
 
   return (
-    <section className="-mt-20">
-      <div className="container">
-        <div className="text-center">
-          <h2 className="text-section">Empowering Features</h2>
-          <p className="text-muted-foreground mt-2">
-            Enhance Your Multi-Chain Staking Experience with 100K STAKE
-          </p>
+    <section className="py-16">
+      <div className="">
+        <div className="container">
+          <TitleBox
+            title="Empowering Features"
+            description="Enhance Your Multi-Chain Staking Experience with 100K STAKE"
+          />
         </div>
+      </div>
 
-        <div className="py-16 grid grid-cols-2 gap-8">
+      <div className="pt-12 ">
+        <div className="container grid md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
             <Card key={index} className="flex">
               <div>
-                <Image src={feature.icon} alt="icon" className="w-20" />
+                <div className="bg-accent flex justify-center items-center h-12 w-12 rounded-xl">
+                  <Image src={feature.icon} alt="icon" className="w-7 h-7" />
+                </div>
               </div>
-              <div className="p-6 pt-0">
-                <h3 className="text-block font-semibold tracking-tight">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {feature.description}
-                </p>
-                <div className="flex justify-end mt-4">
+              <div className="p-6 pt-0 flex flex-col gap-2">
+                <h3 className="text-block">{feature.title}</h3>
+                <p>{feature.description}</p>
+                <div className="flex mt-auto">
                   <Link
                     href={feature.cta.href}
                     className={
                       buttonVariants({
                         variant: "outline",
-                        size: "icon",
-                      }) + "rounded-4xl w-full"
+                      }) + " w-full rounded-full "
                     }
                   >
                     {feature.cta.text}

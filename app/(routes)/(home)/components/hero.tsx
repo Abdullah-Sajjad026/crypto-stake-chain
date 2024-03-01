@@ -1,12 +1,12 @@
 import ASSETS from "@/app/assets";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 
 const Hero = () => {
   return (
     <section className="main-bg">
-      <div className="container flex min-h-screen pt-32 pb-48 md:flex-row flex-col items-center">
+      <div className="container flex min-h-screen pt-32 pb-16 md:flex-row flex-col items-center">
         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-4 md:mb-0 items-center text-center gap-4">
           <h2 className="text-white text-title">
             Amplify Your Cross-Chain Staking
