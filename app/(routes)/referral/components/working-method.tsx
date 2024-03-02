@@ -42,10 +42,18 @@ const WorkingMethod = () => {
             <h3 className="text-block">Number of referrals</h3>
             <h3 className="text-block">Referral bonus</h3>
           </div>
-          {data.map((card) => (
-            <RewardDetails {...card} key={card.title} />
-          ))}
+          <div className="flex flex-col gap-y-8 mt-12">
+            {data.map((card, index) => (
+              <RewardDetails {...card} key={index} />
+            ))}
+          </div>
         </Card>
+
+        <p className="text-center mt-12 w-3/4 mx-auto">
+          Suppose you refer 30 friends who allocate a total of 100 ETH into
+          staking. Based on 20% APR blockchain rewards and 15% commission, your
+          referral bonus per annum is therefore <br/> 3 ETH (100 * 20% * 15%).
+        </p>
       </div>
     </section>
   );
@@ -59,10 +67,16 @@ const RewardDetails = ({
   comissionPercentage: number;
 }) => {
   return (
-    <Card className="flex flex-col md:flex-row gap-4">
-      <span className="bg-white text-semibold flex items-center justify-center h-24 w-24 rounded-full">
-        {noOfReferrals}
-      </span>
+    <Card className="bg-accent flex flex-col md:flex-row gap-4 md:items-center">
+      <div className="flex gap-4 flex-1 ">
+        <div className="bg-white text-semibold flex items-center justify-center h-12 w-12 rounded-full">
+          {noOfReferrals}
+        </div>
+        <div className="flex-1"></div>
+      </div>
+      <div className="text-end self-center">
+        {comissionPercentage}% of 100K Stake's commission
+      </div>
     </Card>
   );
 };
