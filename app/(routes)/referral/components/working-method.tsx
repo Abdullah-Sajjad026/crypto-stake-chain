@@ -48,12 +48,50 @@ const WorkingMethod = () => {
             ))}
           </div>
         </Card>
+        <div className="text-muted-foreground">
+          <p className="text-center mt-12 w-3/4 mx-auto">
+            Suppose you refer 30 friends who allocate a total of 100 ETH into
+            staking. Based on 20% APR blockchain rewards and 15% commission,
+            your referral bonus per annum is therefore <br /> 3 ETH (100 * 20% *
+            15%).
+          </p>
 
-        <p className="text-center mt-12 w-3/4 mx-auto">
-          Suppose you refer 30 friends who allocate a total of 100 ETH into
-          staking. Based on 20% APR blockchain rewards and 15% commission, your
-          referral bonus per annum is therefore <br/> 3 ETH (100 * 20% * 15%).
-        </p>
+          <div className="w-3/4 mx-auto text-center mt-12">
+            <h2 className="text-section mb-6">
+              Your referral bonus is calculated by
+            </h2>
+            <p>
+              <span className="text-bold"> 1- </span> The liquidity profit 100K
+              Stake receive from your referral (Total Referral Commission)
+              <br />
+              <span className="text-bold"> 2-</span> The total number of friends
+              you&apos;ve referred to 100K Stake (Referral Badges)
+            </p>
+          </div>
+
+          <div className="w-3/4 mx-auto text-center mt-12">
+            <h2 className="text-section mb-6">Payout</h2>
+            <p>
+              The bonus is paid out every hour, based on your referrals&apos;
+              assets and referral progress badges. The bonus will be settled
+              with the tokens pledged by your recommended friends, for example,
+              if he is pledged ETH, then you will receive native tokens.
+            </p>
+          </div>
+
+          <div className="w-3/4 mx-auto text-center mt-12">
+            <h2 className="text-section mb-6">
+              How do I join the 100K Stake referral program?
+            </h2>
+            <p>
+              Anyone who stakes on a 100k Stake address is eligible to join our
+              referral program and earn rewards. The number of successful
+              referrals is determined by the number of referral accounts with
+              active funds of $100 or more. For more information on how referral
+              rewards are calculated, please see this FAQ.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -75,7 +113,7 @@ const RewardDetails = ({
         <div className="flex-1"></div>
       </div>
       <div className="text-end self-center">
-        {comissionPercentage}% of 100K Stake's commission
+        {comissionPercentage}% of 100K Stake&apos;s commission
       </div>
     </Card>
   );

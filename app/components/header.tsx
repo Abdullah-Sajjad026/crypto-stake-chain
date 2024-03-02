@@ -1,35 +1,35 @@
 "use client";
 import Image from "next/image";
-import { MenuIcon } from "lucide-react";
+import {MenuIcon} from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
 import ASSETS from "../assets";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import {usePathname} from "next/navigation";
 
-import { useState } from "react";
+import {useState} from "react";
 
 const Header = () => {
   // A header that becomes fixed to the top of the screen when the user scrolls past it.
   // Transparent glassed effect with a shadow.
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-10 shadow-md py-2 h-16 
+      className="fixed top-0 left-0 right-0 z-10 shadow-md py-2 h-16
     bg-white bg-opacity-80 backdrop-filter backdrop-blur-md backdrop-saturate-150 transition-all duration-300 ease-in-out"
     >
       <div className="container flex justify-between items-center ">
         <div className="flex items-center gap-2">
-          <Image src={ASSETS.logo1x} alt="Logo" width={50} height={50} />
+          <Image src={ASSETS.logo1x} alt="Logo" width={50} height={50}/>
           <span>
-            100K <br /> Stake
+            100K <br/> Stake
           </span>
         </div>
         <div className="flex gap-4 items-center">
           <div className="hidden lg:inline">
-            <NavBar />
+            <NavBar/>
           </div>
           <span className="lg:hidden">
-            <NavDrawer />
+            <NavDrawer/>
           </span>
           <Button>Connect</Button>
         </div>
@@ -76,7 +76,7 @@ const NavBar = () => {
     },
     {
       name: "FAQ",
-      href: "/faq",
+      href: "/faqs",
     },
   ];
   // A nav component using tailwind classes, nextjs link component with above links in array looping

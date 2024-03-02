@@ -59,7 +59,7 @@
   }
 
   .text-section {
-    @apply text-3xl font-bold leading-8 lg:leading-10;
+    @apply text-3xl font-bold leading-8 lg:leading-10 text-foreground;
   }
 
   .text-title {
