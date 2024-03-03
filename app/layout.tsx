@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import localFont from "@next/font/local";
+import 'react-modern-drawer/dist/index.css'
 import "./globals.css";
 
 import Header from "./components/header";
-import Footer from "./components/footer";
 
 const segoeUI = localFont({
   src: [
@@ -26,17 +26,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${segoeUI.className} relative`}>
-        <Header />
-        {children}
-        {/* <Footer /> */}
-      </body>
+    <body className={`${segoeUI.className} relative`}>
+    <Header/>
+    {children}
+    {/* <Footer /> */}
+    </body>
     </html>
   );
 }

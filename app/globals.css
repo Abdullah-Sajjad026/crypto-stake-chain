@@ -3,99 +3,100 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 0%;
 
-    --card: 0 0% 100%;
-    /*TODO: ----*/
-    --card-foreground: 222.2 84% 4.9%;
+        --card: 0 0% 100%;
+        /*TODO: ----*/
+        --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 41 100% 90%;
-    /*TODO: ----*/
-    --popover-foreground: 222.2 84% 4.9%;
+        --popover: 41 100% 90%;
+        /*TODO: ----*/
+        --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 40 94% 56%;
-    --primary-foreground: 0 0% 100%;
+        --primary: 40 94% 56%;
+        --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
 
-    /*TODO: ----*/
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 0 0% 27%;
+        /*TODO: ----*/
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 0 0% 27%;
 
-    --accent: 41 100% 90%;
-    --accent-foreground: 0 0% 0%;
+        --accent: 41 100% 90%;
+        --accent-foreground: 0 0% 0%;
 
-    /*TODO: ----*/
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+        /*TODO: ----*/
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
 
-    --primary-light: 38 100% 98%;
+        --primary-light: 38 100% 98%;
 
-    --border: 40 94% 56%;
-    --input: 40 94% 56%;
-    /*TODO: ----*/
-    --ring: 222.2 84% 4.9%;
+        --border: 40 94% 56%;
+        --input: 43 5% 75%;
 
-    --radius: 0.5rem;
-  }
+        /*TODO: ----*/
+        --ring: 222.2 84% 4.9%;
+
+        --radius: 0.5rem;
+    }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+    * {
+        @apply border-border;
+    }
 
-  body {
-    @apply bg-background text-foreground leading-5;
-  }
+    body {
+        @apply bg-background text-foreground leading-5;
+    }
 }
 
 @layer utilities {
-  p {
-    @apply text-base leading-normal;
-  }
+    p {
+        @apply text-base leading-normal;
+    }
 
-  .text-section {
-    @apply text-3xl font-bold leading-8 lg:leading-10 text-foreground;
-  }
+    .text-section {
+        @apply text-3xl font-bold leading-8 lg:leading-10 text-foreground;
+    }
 
-  .text-title {
-    @apply text-2xl font-bold leading-7 lg:leading-9;
-  }
+    .text-title {
+        @apply text-2xl font-bold leading-7 lg:leading-9;
+    }
 
-  .text-block {
-    @apply text-lg font-bold leading-7 lg:leading-9;
-  }
+    .text-block {
+        @apply text-lg font-bold leading-7 lg:leading-9;
+    }
 }
 
 .main-bg {
-  background-image: url("../app/assets/hero-bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
+    background-image: url("../app/assets/hero-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
 
-  position: relative;
+    position: relative;
 }
 
 .main-bg.bottom-white-layer::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
 }
 
 .main-bg.top-white-layer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
 }

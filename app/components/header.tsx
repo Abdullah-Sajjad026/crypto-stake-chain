@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import {MenuIcon} from "lucide-react";
-
+import Drawer from "react-modern-drawer";
 import {Button} from "@/components/ui/button";
 import ASSETS from "../assets";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-
 import {useState} from "react";
+
 
 const Header = () => {
   // A header that becomes fixed to the top of the screen when the user scrolls past it.
@@ -25,10 +25,10 @@ const Header = () => {
           </span>
         </div>
         <div className="flex gap-4 items-center">
-          <div className="hidden lg:inline">
+          <div className="hidden xl:inline">
             <NavBar/>
           </div>
-          <span className="lg:hidden">
+          <span className="xl:hidden">
             <NavDrawer/>
           </span>
           <Button>Connect</Button>
@@ -99,12 +99,26 @@ const NavBar = () => {
 const NavDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const toggleDrawer = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <div>
       <MenuIcon
         className="cursor-pointer hover:scale-105 transition-transform ease-in duration-75"
         onClick={() => setIsOpen((prev) => !prev)}
       />
+      <Drawer
+        open={isOpen}
+        onClose={toggleDrawer}
+        direction='right'
+
+      >
+        <div className="p-4 bg-accent h-full">
+          <NavBar/>
+        </div>
+      </Drawer>
     </div>
   );
 };
