@@ -10,6 +10,13 @@ import ScoresIcon from "./icons/scores.png";
 import LockSearchIcon from "./icons/lock-search.png";
 import IPFSIcon from "./icons/ipfs.png";
 import DiamondIcon from "./icons/diamond.png";
+import SwapArrowsIcon from './icons/swap.png'
+
+import EthIcon from './icons/ethereum.png';
+import AptosIcon from './icons/aptos.png';
+import BnbChainIcon from './icons/bnb-chain.png';
+import OptimismIcon from './icons/optimism.png';
+import ArbitrumIcon from './icons/arbitrum.png';
 
 import Partner1 from "./respect/partner-1.svg";
 import Partner2 from "./respect/partner-2.svg";
@@ -52,6 +59,13 @@ const ASSETS = {
     lockSearch: LockSearchIcon,
     ipfs: IPFSIcon,
     diamond: DiamondIcon,
+    swapArrows: SwapArrowsIcon,
+
+    eth: EthIcon,
+    aptos: AptosIcon,
+    bnbChain: BnbChainIcon,
+    optimism: OptimismIcon,
+    arbitrum: ArbitrumIcon,
   },
 
   partners: {
