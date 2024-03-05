@@ -4,6 +4,7 @@ import 'react-modern-drawer/dist/index.css'
 import "./globals.css";
 
 import Header from "./components/header";
+import {ReactQueryClientProvider} from "@/app/components/react-query-client-provider";
 
 const segoeUI = localFont({
   src: [
@@ -33,9 +34,10 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={`${segoeUI.className} relative`}>
-    <Header/>
-    {children}
-    {/* <Footer /> */}
+    <ReactQueryClientProvider>
+      <Header/>
+      {children}
+    </ReactQueryClientProvider>
     </body>
     </html>
   );
