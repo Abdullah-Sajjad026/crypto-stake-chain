@@ -1,23 +1,8 @@
+'use client';
+
 import Chart from "react-apexcharts";
 
-type TokenCharts = {
-  prices: [number, number][]
-  market_caps: [number, number][]
-  total_volumes: [number, number][]
-
-}
-
-async function getTokenCharts(tokenId: string, days: number = 30) {
-  const response = await fetch(`https://api.coingecko.com/api/v3/coins/${tokenId}/market_chart?vs_currency=usd&days=${days}&interval=daily`)
-  return (await response.json()) as TokenCharts
-}
-
-
-const TokenPricesHistoryChart = async ({data = [], tokenId}: { data: [number, number][], tokenId?: string }) => {
-
-  if (tokenId && !data.length)
-    data = (await getTokenCharts(tokenId as string)).prices
-
+const TokenPricesHistoryChart = ({data}: { data: [number, number][], }) => {
   const series = [
     {
       name: "Price",
