@@ -99,7 +99,7 @@ export default async function Page({
           </div>
         </Card>
         <Card className="md:col-span-5">
-          <Tabs>
+          <Tabs defaultValue="prices">
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
               <div>
                 <h2 className="text-block">
@@ -109,7 +109,7 @@ export default async function Page({
                   Last updated: {new Date(tokenInfo.market_data.last_updated).toLocaleString()}
                 </p>
               </div>
-              <TabsList defaultValue="prices">
+              <TabsList>
                 <TabsTrigger value="prices">Prices</TabsTrigger>
                 <TabsTrigger value="market_cap">Market Cap</TabsTrigger>
                 <TabsTrigger value="volume">Volume</TabsTrigger>

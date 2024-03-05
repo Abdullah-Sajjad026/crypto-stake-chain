@@ -87,7 +87,7 @@ const NavBar = () => {
         <Link
           href={link.href}
           key={link.name}
-          className={pathname === link.href ? "font-bold" : ""}
+          className={pathname.startsWith(link.href) ? "font-bold" : ""}
         >
           {link.name}
         </Link>
