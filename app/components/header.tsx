@@ -64,7 +64,7 @@ const NavBar = () => {
     },
     {
       name: "Analytics",
-      href: "/analytics",
+      href: "/analytics/overview",
     },
     {
       name: "Swap",

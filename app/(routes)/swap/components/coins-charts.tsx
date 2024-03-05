@@ -2,11 +2,11 @@
 
 import {useEffect, useState} from "react";
 import dynamic from "next/dynamic";
-
-const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
 import {Card} from "@/components/ui/card";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {SelectOption} from "@/components/ui/select";
+
+const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
 
 const CoinsCharts = ({
                        coins
