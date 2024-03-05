@@ -4,7 +4,7 @@ import {ColumnDef} from "@tanstack/react-table";
 import Image from "next/image";
 import Link from "next/link";
 
-export type TopTokenEntry =
+export type MarketTokenItem =
   {
     id: string;
     symbol: string;
@@ -39,7 +39,7 @@ export type TopTokenEntry =
   }
 
 
-export const topTokensColumns: ColumnDef<TopTokenEntry>[] = [
+export const topTokensColumns: ColumnDef<MarketTokenItem>[] = [
   {
     id: "serial",
     header: () => <div className="font-bold">#</div>,
@@ -65,7 +65,7 @@ export const topTokensColumns: ColumnDef<TopTokenEntry>[] = [
     header: () => <div className="font-bold flex-1">Price</div>,
     cell: ({row}) => (
       <div>
-        ${row.getValue("current_price")}
+        ${(row.getValue("current_price") as number).toFixed(2)}
       </div>
     )
   },
@@ -81,7 +81,7 @@ export const topTokensColumns: ColumnDef<TopTokenEntry>[] = [
             : "text-red-500"
         }
       >
-        ${row.getValue("price_change_24h")}
+        ${(row.getValue("price_change_24h") as number).toFixed(2)}
       </div>
     )
   },

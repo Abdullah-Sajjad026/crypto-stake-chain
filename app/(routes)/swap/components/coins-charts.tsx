@@ -1,10 +1,11 @@
 'use client';
 
 import {useEffect, useState} from "react";
-import dynamic from "next/dynamic";
 import {Card} from "@/components/ui/card";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {SelectOption} from "@/components/ui/select";
+
+import dynamic from "next/dynamic";
 
 const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
 
