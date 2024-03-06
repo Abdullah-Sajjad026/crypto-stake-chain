@@ -1,4 +1,4 @@
-export interface CoinData {
+export interface TokenInfo {
   id: string
   symbol: string
   name: string

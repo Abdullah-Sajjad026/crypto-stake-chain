@@ -1,28 +1,12 @@
 import {Button} from "@/components/ui/button";
-import {CoinData} from "./coin-data.type"
 import {Card} from "@/components/ui/card";
 import Image from "next/image";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import TokenPricesHistoryChart from "../components/token-charts/token-prices-history-chart";
 import TokenVolumeChart from "../components/token-charts/token-volume-chart";
 import TokenMarketCapChart from "../components/token-charts/token-marketcap-chart";
+import {getTokenCharts, getTokenInfo} from "@/app/actions/token-actions";
 
-type TokenCharts = {
-  prices: [number, number][]
-  market_caps: [number, number][]
-  total_volumes: [number, number][]
-
-}
-
-async function getTokenCharts(tokenId: string, days: number = 30) {
-  const response = await fetch(`https://api.coingecko.com/api/v3/coins/${tokenId}/market_chart?vs_currency=usd&days=${days}&interval=daily`)
-  return (await response.json()) as TokenCharts
-}
-
-async function getTokenInfo(tokenId: string) {
-  const response = await fetch(`https://api.coingecko.com/api/v3/coins/${tokenId}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`);
-  return (await response.json()) as CoinData;
-}
 
 export default async function Page({
                                      params
@@ -32,7 +16,7 @@ export default async function Page({
   }
 }>) {
 
-  const chartsData = await getTokenCharts(params.tokenId)
+  const chartsData = await getTokenCharts({tokenId: params.tokenId})
   const tokenInfo = await getTokenInfo(params.tokenId)
 
   return (
@@ -70,7 +54,7 @@ export default async function Page({
           <div className="flex flex-col gap-4">
             <div>
               <h3 className="text-muted-foreground">Market Cap Rank</h3>
-              <span className="font-bold mb-1">${tokenInfo.market_cap_rank}</span>
+              <span className="font-bold mb-1">{tokenInfo.market_cap_rank}</span>
             </div>
             <div>
               <h3 className="text-muted-foreground">Market Cap</h3>
@@ -94,7 +78,7 @@ export default async function Page({
             </div>
             <div>
               <h3 className="text-muted-foreground">Available Supply</h3>
-              <span className="font-bold mb-1">{tokenInfo.market_data.circulating_supply}</span>
+              <span className="font-bold mb-1">${tokenInfo.market_data.circulating_supply}</span>
             </div>
           </div>
         </Card>

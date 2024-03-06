@@ -3,17 +3,12 @@ import {topTokensColumns} from "./top-tokens-table/columns";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import {Card} from "@/components/ui/card";
-
-
-async function getTopTokens(page: number = 1) {
-  const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${page * 10}&page=1&sparkline=false`)
-  return response.json()
-}
+import {getTokensMarketData,} from "@/app/actions/token-actions";
 
 const TopTokens = async ({pageNo = 1}: {
   pageNo?: number
 }) => {
-  const topTokens = await getTopTokens(pageNo)
+  const topTokens = await getTokensMarketData({page: pageNo})
 
   return (
     <section className="z-[2] relative">
