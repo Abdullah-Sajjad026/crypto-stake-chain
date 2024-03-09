@@ -1,12 +1,15 @@
+'use client';
+
+
+import {useState} from "react";
+import Image from "next/image";
 import {Card} from "@/components/ui/card";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Button} from "@/components/ui/button";
 import InputWithSelect from "@/components/ui/input-with-select";
-import Image from "next/image";
 import ASSETS from "@/app/assets";
 import {SelectOption} from "@/components/ui/select";
 import {MarketTokenItem} from "@/app/actions/token-actions";
-import {useState} from "react";
 
 const SwapCalculator = ({
                           token1Id, token2Id, setToken1Id, setToken2Id, tokensData

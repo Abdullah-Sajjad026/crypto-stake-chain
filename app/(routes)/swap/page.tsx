@@ -4,11 +4,11 @@ import Footer from "@/app/components/footer";
 import TitleBox from "@/components/ui/title-box";
 import SwapCalculator from "./components/swap-calculator";
 import CoinsCharts from "./components/coins-charts";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useAppConfig} from "@/hooks/use-app-config";
 import {NetworkSupportedTokens} from "@/app/constants";
 import {useQuery} from "@tanstack/react-query";
-import {MarketTokenItem, getTokensMarketData} from "@/app/actions/token-actions";
+import {getTokensMarketData} from "@/app/actions/token-actions";
 import {Alert} from "@/components/ui/alert";
 
 export default function PageSwap() {
