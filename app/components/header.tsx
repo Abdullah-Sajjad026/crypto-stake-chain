@@ -31,7 +31,7 @@ const Header = () => {
           <span className="xl:hidden">
             <NavDrawer/>
           </span>
-          <Button>Connect</Button>
+          <w3m-button/>
         </div>
       </div>
     </header>

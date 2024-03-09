@@ -10,10 +10,17 @@ import {NetworkSupportedTokens} from "@/app/constants";
 import {useQuery} from "@tanstack/react-query";
 import {getTokensMarketData} from "@/app/actions/token-actions";
 import {Alert} from "@/components/ui/alert";
+import {useWeb3ModalAccount} from "@web3modal/ethers/react";
 
 export default function PageSwap() {
   const appNetwork = useAppConfig().selectedNetwork;
   const availableTokens = NetworkSupportedTokens[appNetwork.value as keyof typeof NetworkSupportedTokens]
+
+  const {address, chainId, isConnected} = useWeb3ModalAccount()
+  console.log({
+    address, chainId, isConnected
+  })
+
 
   const [token1, setToken1] = useState(
     availableTokens[0]
