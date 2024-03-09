@@ -5,18 +5,49 @@ import InputWithSelect from "@/components/ui/input-with-select";
 import Image from "next/image";
 import ASSETS from "@/app/assets";
 import {SelectOption} from "@/components/ui/select";
+import {MarketTokenItem} from "@/app/actions/token-actions";
+import {useState} from "react";
 
 const SwapCalculator = ({
-                          coin1, coin2, setCoin1, setCoin2,
-                          coinsOptions
+                          token1Id, token2Id, setToken1Id, setToken2Id, tokensData
                         }: {
-  coin1: string,
-  coin2: string,
-  setCoin1: (value: SelectOption) => void,
-  setCoin2: (value: SelectOption) => void,
-  coinsOptions: SelectOption[]
+  token1Id: string,
+  token2Id: string,
+  setToken1Id: (token: string) => void,
+  setToken2Id: (token: string) => void,
+  tokensData: MarketTokenItem[]
 }) => {
 
+  const [token1Input, setToken1Input] = useState<number>(1);
+
+  const tokensOptions: SelectOption[] = tokensData.map(token => ({
+    label: token.name,
+    value: token.id,
+    icon: token.image
+  }));
+
+  const onesPriceInTwo = (token1: string, token2: string) => {
+    // we get the usd values of token 1 and token 2 and perform calculations to know
+    // how much token 1 like 1eth is worth in token 2 like 1eth ~~ 2 apecoin
+    // we can use the tokenData to get the current price of token 1 and token 2
+
+    const token1Price = tokensData.find(token => token.id === token1)?.current_price;
+    const token2Price = tokensData.find(token => token.id === token2)?.current_price;
+
+    if (token1Price && token2Price) {
+      return token1Price / token2Price
+    } else return 0;
+  }
+
+
+  const getPricesString = (token1: string, token2: string) => {
+    const token1Symbol = tokensData.find(token => token.id === token1)?.symbol;
+    const token2Symbol = tokensData.find(token => token.id === token2)?.symbol;
+
+    if (token1Symbol && token2Symbol) {
+      return `1 ${token1Symbol.toUpperCase()} ≈ ${onesPriceInTwo(token1, token2).toFixed(2)} ${token2Symbol.toUpperCase()}`
+    }
+  }
 
   return (
     <Card>
@@ -26,100 +57,107 @@ const SwapCalculator = ({
           <TabsTrigger value="limit">Limit</TabsTrigger>
         </TabsList>
         <TabsContent value="swap" className="mt-4">
+
           <div>
             <InputWithSelect
-              selectOptions={coinsOptions}
+              label="Your Sell"
+              selectOptions={tokensOptions}
               selectProps={{
-                value: coin1,
-                onValueChange: (value: string) => {
-                  console.log(value);
-                  setCoin1(coinsOptions.find(option => option.value === value)!)
-                }
+                value: token1Id,
+                onValueChange: (value: string) => setToken1Id(value)
+
               }}
               inputProps={{
-                placeholder: "0.0"
+                value: token1Input,
+                onChange: (e) => setToken1Input(Number(e.target.value)),
               }}
-              label="Your Sell"/>
+            />
             <div className="flex justify-between text-muted-foreground text-sm mt-2">
               <span>
-                1 ETH ≈ $3,418.00 USDT
+                {
+                  getPricesString(token1Id, token2Id)
+                }
               </span>
-
-              <span>$3,428.25</span>
             </div>
           </div>
+
+
           <div className="my-4 flex justify-center">
             <Image src={ASSETS.icons.swapArrows} alt="Swap Arrows" className={"h-8 w-8"}/>
           </div>
 
           <div className={"mt-4"}>
             <InputWithSelect
-              selectOptions={coinsOptions}
+              label="Your Buy"
+              selectOptions={tokensOptions}
               selectProps={{
-                value: coin2,
-                onValueChange: (value: string) => {
-                  console.log(value);
-                  setCoin2(coinsOptions.find(option => option.value === value)!)
-                }
+                value: token2Id,
+                onValueChange: (value: string) => setToken2Id(value)
               }}
               inputProps={{
-                placeholder: "0.0"
+                value: token1Input * onesPriceInTwo(token1Id, token2Id),
+                readOnly: true
               }}
-              label="Your Buy"/>
+            />
             <div className="flex justify-between text-muted-foreground text-sm mt-2">
               <span>
-                1 ETH ≈ $3,418.00 USDT
+                {
+                  getPricesString(token2Id, token1Id)
+                }
               </span>
-
-              <span>$3,428.25</span>
             </div>
           </div>
+
         </TabsContent>
+
         <TabsContent value="limit">
 
           <div>
             <InputWithSelect
-              selectOptions={coinsOptions}
+              label="Your Sell"
+              selectOptions={tokensOptions}
               selectProps={{
-                defaultValue: "eth"
+                value: token1Id,
+                onValueChange: (value: string) => setToken1Id(value)
               }}
               inputProps={{
-                placeholder: "0.0"
+                value: token1Input,
+                onChange: (e) => setToken1Input(Number(e.target.value)),
+
               }}
-              label="Your Sell"/>
+            />
             <div className="flex justify-between text-muted-foreground text-sm mt-2">
               <span>
-                1 ETH ≈ $3,418.00 USDT
+                {getPricesString(token1Id, token2Id)}
               </span>
-
-              <span>$3,428.25</span>
             </div>
           </div>
+
           <div className="my-4 flex- justify-center">
             <Image src={ASSETS.icons.swapArrows} alt="Swap Arrows" className={"h-8 w-8"}/>
           </div>
 
           <div className={"mt-4"}>
             <InputWithSelect
-              selectOptions={coinsOptions}
+              label="Your Buy"
+              selectOptions={tokensOptions}
               selectProps={{
-                defaultValue: "eth"
+                value: token2Id,
+                onValueChange: (value: string) => setToken2Id(value)
               }}
               inputProps={{
-                placeholder: "0.0"
+                value: token1Input * onesPriceInTwo(token1Id, token2Id),
+                readOnly: true
               }}
-              label="Your Buy"/>
+            />
             <div className="flex justify-between text-muted-foreground text-sm mt-2">
               <span>
-                1 ETH ≈ $3,418.00 USDT
+                {getPricesString(token2Id, token1Id)}
               </span>
-
-              <span>$3,428.25</span>
             </div>
           </div>
 
           <div className="mt-4">
-
           </div>
         </TabsContent>
       </Tabs>

@@ -15,13 +15,18 @@ const TopTokens = async ({pageNo = 1}: {
       <Card className="lg:w-4/5 mx-auto">
         <h2 className="text-block text-center mb-4">Top Tokens</h2>
         <TopTokensTable columns={topTokensColumns} data={topTokens} pageNo={pageNo}/>
-        <div className="mt-4 text-center">
-          <Link
-            scroll={false}
-            className={buttonVariants({variant: "default"})} href={`/analytics/tokens?page=${Number(pageNo) + 1}`}>
-            View All
-          </Link>
-        </div>
+        {
+          pageNo < 2 && (
+            <div className="mt-4 text-center">
+              <Link
+                scroll={false}
+                className={buttonVariants({variant: "default"})} href={`/analytics/tokens?page=${Number(pageNo) + 1}`}>
+                View All
+              </Link>
+            </div>
+          )
+        }
+
       </Card>
     </section>
   )

@@ -7,6 +7,40 @@ export type TokenCharts = {
   total_volumes: [number, number][]
 }
 
+export type MarketTokenItem =
+  {
+    id: string;
+    symbol: string;
+    name: string;
+    image: string;
+    current_price: number;
+    market_cap: number;
+    market_cap_rank: number;
+    fully_diluted_valuation: number;
+    total_volume: number;
+    high_24h: number;
+    low_24h: number;
+    price_change_24h: number;
+    price_change_percentage_24h: number;
+    market_cap_change_24h: number;
+    market_cap_change_percentage_24h: number;
+    circulating_supply: number;
+    total_supply: number;
+    max_supply?: any;
+    ath: number;
+    ath_change_percentage: number;
+    ath_date: string;
+    atl: number;
+    atl_change_percentage: number;
+    atl_date: string;
+    roi: {
+      times: number;
+      currency: string;
+      percentage: number;
+    };
+    last_updated: string;
+  }
+
 
 export async function getTokensMarketData({
                                             page = 1,
@@ -31,7 +65,7 @@ export async function getTokensMarketData({
     throw new Error(response.statusText)
   }
 
-  return response.json()
+  return response.json() as Promise<MarketTokenItem[]>
 }
 
 export const getTokenCharts = async ({

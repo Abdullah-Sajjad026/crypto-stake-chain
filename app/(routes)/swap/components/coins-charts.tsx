@@ -1,48 +1,68 @@
 'use client';
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Card} from "@/components/ui/card";
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {SelectOption} from "@/components/ui/select";
+import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {getTokenCharts, MarketTokenItem} from "@/app/actions/token-actions";
+import Image from "next/image";
+import {useQuery} from "@tanstack/react-query";
+import {Alert} from "@/components/ui/alert";
+import TokenPricesHistoryChart
+  from "@/app/(routes)/analytics/tokens/components/token-charts/token-prices-history-chart";
 
 
 const CoinsCharts = ({
-                       coins
+                       token1, token2
                      }: {
-  coins?: (SelectOption)[]
+  token1: MarketTokenItem,
+  token2: MarketTokenItem
 }) => {
+  const [openedCoin, setOpenedCoin] = useState<string>(token1.id);
 
-  const [openedCoin, setOpenedCoin] = useState(coins && coins.length > 0 ? coins[0].value : undefined)
+  const {isLoading, isSuccess, isError, error, data: tokenCharts} = useQuery({
+    queryKey: ['tokenCharts', openedCoin],
+    queryFn: () => getTokenCharts({tokenId: openedCoin})
+  })
 
+  useEffect(() => {
+    setOpenedCoin(token1.id);
+  }, [token1]);
 
   return (
     <Card>
-      {
-        coins && coins.length > 0 ? (
-          <Tabs value={openedCoin} onValueChange={setOpenedCoin}>
-            <TabsList>
-              {
-                coins.map((coin, index) => (
-                  <TabsTrigger key={index} value={coin.value}>
-                    {coin.label}
-                  </TabsTrigger>
-                ))
-              }
-            </TabsList>
-            {
-              coins.map((coin, index) => (
-                <TabsContent key={index} value={coin.value} className={"mt-4"}>
+      <Tabs value={openedCoin} onValueChange={setOpenedCoin}>
+        <TabsList>
+          <TabsTrigger value={token1.id}>
+            <Image src={token1.image} width={20} height={20} className={"mr-2"} alt={token1.name}/>
+            <span>{token1.name}</span>
+          </TabsTrigger>
+          <TabsTrigger value={token2.id}>
+            <Image src={token2.image} width={20} height={20} className={"mr-2"} alt={token2.name}/>
+            <span>{token2.name}</span>
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
 
-                </TabsContent>
-              ))
-            }
-          </Tabs>
-        ) : (
-          <div>
-            <p className="text-muted-foreground text-center">Select a coin to see its chart</p>
-          </div>
+      {
+        isLoading && (
+          <p>Loading ... </p>
         )
       }
+
+      {
+        isError && (
+          <Alert variant={"destructive"}>
+            {error?.message}
+          </Alert>
+        )
+      }
+      {
+        isSuccess && (
+          <TokenPricesHistoryChart data={tokenCharts.prices}/>
+        )
+      }
+
+
     </Card>
   )
 }
