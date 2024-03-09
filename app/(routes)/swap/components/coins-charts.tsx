@@ -8,7 +8,7 @@ import Image from "next/image";
 import {useQuery} from "@tanstack/react-query";
 import {Alert} from "@/components/ui/alert";
 import TokenPricesHistoryChart
-  from "@/app/(routes)/analytics/tokens/components/token-charts/token-prices-history-chart";
+  from "@/app/components/token-charts/token-prices-history-chart";
 
 
 const CoinsCharts = ({

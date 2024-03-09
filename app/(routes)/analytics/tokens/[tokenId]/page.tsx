@@ -2,9 +2,9 @@ import {Button} from "@/components/ui/button";
 import {Card} from "@/components/ui/card";
 import Image from "next/image";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import TokenPricesHistoryChart from "../components/token-charts/token-prices-history-chart";
-import TokenVolumeChart from "../components/token-charts/token-volume-chart";
-import TokenMarketCapChart from "../components/token-charts/token-marketcap-chart";
+import TokenPricesHistoryChart from "@/app/components/token-charts/token-prices-history-chart";
+import TokenVolumeChart from "@/app/components/token-charts/token-volume-chart";
+import TokenMarketCapChart from "@/app/components/token-charts/token-marketcap-chart";
 import {getTokenCharts, getTokenInfo} from "@/app/actions/token-actions";
 
 

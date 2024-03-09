@@ -1,12 +1,18 @@
 'use client';
+import dynamic from "next/dynamic";
+import {useEffect, useState} from "react";
 
-
-// import dynamic from "next/dynamic";
-// const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
-
-import Chart from "react-apexcharts";
+const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
 
 const TokenMarketCapChart = ({data}: { data: [number, number][] }) => {
+  const [Chart, setChart] = useState<any>();
+
+  useEffect(() => {
+    import("react-apexcharts").then((mod) => {
+      setChart(() => mod.default);
+    });
+  }, []);
+
 
   const series = [
     {
@@ -35,7 +41,7 @@ const TokenMarketCapChart = ({data}: { data: [number, number][] }) => {
     }
   }
 
-  return data ?
+  return (data && Chart) ?
     // @ts-ignore
     <Chart options={options} series={series} type="bar" height={350}/>
     : <p>Loading ...</p>

@@ -22,14 +22,12 @@ export default function PageSwap() {
     availableTokens[1]
   )
 
-
   const {isSuccess, data: tokensData, isLoading, isError, error} = useQuery({
       queryKey: ['availableTokensData'],
       queryFn: () => getTokensMarketData({ids: availableTokens.map(token => token).join(",")}),
 
     }
   )
-
 
   return (
     <section className="main-bg min-h-screen pt-32">

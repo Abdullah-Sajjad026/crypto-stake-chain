@@ -1,12 +1,23 @@
 'use client';
+import dynamic from "next/dynamic";
+import {useEffect, useState} from "react";
 
-import Chart from "react-apexcharts";
+const Chart = dynamic(() => import("react-apexcharts"), {ssr: false});
 
-const TokenVolumeChart = ({data}: { data: [number, number][] }) => {
+const TokenPricesHistoryChart = ({data}: { data: [number, number][], }) => {
+
+  const [Chart, setChart] = useState<any>();
+
+  useEffect(() => {
+    import("react-apexcharts").then((mod) => {
+      setChart(() => mod.default);
+    });
+  }, []);
+
 
   const series = [
     {
-      name: "Volume",
+      name: "Price",
       data: data.map((entry: any) => [entry[0], entry[1].toFixed(2)])
     }
   ]
@@ -31,10 +42,10 @@ const TokenVolumeChart = ({data}: { data: [number, number][] }) => {
     }
   }
 
-  return data ?
+  return (data.length && Chart) ?
     // @ts-ignore
     <Chart options={options} series={series} type="area" height={350}/>
     : <p>Loading ...</p>
 }
 
-export default TokenVolumeChart;
+export default TokenPricesHistoryChart;
