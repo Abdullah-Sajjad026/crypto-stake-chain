@@ -1,8 +1,8 @@
-import {MarketTokenItem} from "@/app/(routes)/analytics/tokens/components/top-tokens/top-tokens-table/columns";
-import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
+import {Carousel, CarouselContent, CarouselItem,} from "@/components/ui/carousel";
 import {Card} from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import {MarketTokenItem} from "@/app/actions/token-actions";
 
 const TopMoversTokens = ({data}: {
   data: MarketTokenItem[]
@@ -13,10 +13,6 @@ const TopMoversTokens = ({data}: {
         <h2 className="text-block">
           Top Gainers
         </h2>
-        {/*<div>*/}
-        {/*  <CarouselPrevious/>*/}
-        {/*  <CarouselNext/>*/}
-        {/*</div>*/}
       </div>
       <CarouselContent>
         {
