@@ -8,9 +8,9 @@ import {usePathname} from "next/navigation";
 
 export default function Layout({
                                  children
-                               }: {
+                               }: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   const {selectedNetwork} = useAppConfig()
   const pathname = usePathname();
 
@@ -36,7 +36,7 @@ export default function Layout({
 
         <div className="flex flex-col items-center md:flex-row md:justify-between md:items-start gap-4">
           <h2 className="text-section">
-            Analytics {selectedNetwork.name}
+            Analytics {selectedNetwork.label}
           </h2>
 
           <div className="bg-white rounded-full p-1 shadow-md">
