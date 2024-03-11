@@ -49,7 +49,7 @@ createWeb3Modal({
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
   themeMode: 'light', // Optional - defaults to 'light'
   themeVariables: {
-    "--w3m-accent": "#F8B226",
+    "--w3m-accent": "#69C3FF",
   }
 })
 

@@ -1,14 +1,15 @@
 import ASSETS from "@/app/assets";
-import { Button } from "@/components/ui/button";
-import { Card, CardTitle } from "@/components/ui/card";
+import {Button} from "@/components/ui/button";
+import {Card, CardTitle} from "@/components/ui/card";
 import Image from "next/image";
 
 const Hero = () => {
   return (
     <section className="main-bg bottom-white-layer">
       <div className="container flex min-h-screen pt-32 pb-16 md:flex-row flex-col items-center">
-        <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-4 md:mb-0 items-center text-center gap-4">
-          <h2 className="text-white text-title">
+        <div
+          className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-4 md:mb-0 items-center text-center gap-4">
+          <h2 className="text-[#69C3FF] text-title">
             Amplify Your Cross-Chain Staking
           </h2>
           <h1 className="text-4xl font-bold">
@@ -17,7 +18,7 @@ const Hero = () => {
             unbounded earnings in decentralized staking, powered by our robust
             smart contracts
           </h1>
-          <h2 className="text-white text-title">
+          <h2 className="text-muted-foreground text-title">
             Stake, Earn, Soar with 100K STAKE.
           </h2>
           <div className="flex gap-4 items-center">
@@ -32,9 +33,10 @@ const Hero = () => {
             src={ASSETS.doodleMoneyBank}
           />
           <div className="flex-items-center justify-center mt-12">
-            <Card className="border-white mx-auto bg-white bg-opacity-30 backdrop-filter backdrop-blur-md backdrop-saturate-150 w-64 rounded-3xl text-center">
+            <Card
+              className="border-white mx-auto bg-white bg-opacity-30 backdrop-filter backdrop-blur-md backdrop-saturate-150 w-64 rounded-3xl text-center">
               <CardTitle>Total Value Locked</CardTitle>
-              <h2 className="text-section text-primary">$1,000,000,000</h2>
+              <h2 className="text-primary text-section">$1,000,000,00</h2>
             </Card>
           </div>
         </div>

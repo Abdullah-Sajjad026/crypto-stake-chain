@@ -1,5 +1,5 @@
 import Logo1x from "./logo-1x.png";
-import Logo2x from "./logo-2x.png";
+// import Logo2x from "./logo-2x.png";
 import BackIllustration from "./hero-bg.png";
 import DoodleMoneyBank from "./doodle-money-bank.png";
 
@@ -46,7 +46,7 @@ import Staff6 from "./staff/staff_head6.png";
 
 const ASSETS = {
   logo1x: Logo1x,
-  logo2x: Logo2x,
+  // logo2x: Logo2x,
   backIllustration: BackIllustration,
   doodleMoneyBank: DoodleMoneyBank,
 

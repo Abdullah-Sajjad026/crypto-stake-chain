@@ -2,7 +2,6 @@
 import Image from "next/image";
 import {MenuIcon} from "lucide-react";
 import Drawer from "react-modern-drawer";
-import {Button} from "@/components/ui/button";
 import ASSETS from "../assets";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
@@ -82,7 +81,7 @@ const NavBar = () => {
   // A nav component using tailwind classes, nextjs link component with above links in array looping
   // that shows links in flex row while above lg endpoint and in column with consistent spacing on below screens
   return (
-    <nav className="flex lg:flex-row gap-4 flex-col lg:items-center">
+    <nav className="flex xl:flex-row gap-4 flex-col xl:items-center">
       {links.map((link) => (
         <Link
           href={link.href}

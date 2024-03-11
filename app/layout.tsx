@@ -6,18 +6,18 @@ import "./globals.css";
 import Header from "./components/header";
 import ContextProviders from "@/app/components/context-providers/context-providers";
 
-const segoeUI = localFont({
+const genera = localFont({
   src: [
     {
-      path: "../public/fonts/segoe-ui/Segoe_UI.ttf",
+      path: "../public/fonts/genera/genera.ttf",
       weight: "400",
     },
     {
-      path: "../public/fonts/segoe-ui/Segoe_UI_Bold.ttf",
+      path: "../public/fonts/genera/genera-bold.ttf",
       weight: "700",
     },
   ],
-  variable: "--font-segoe-ui",
+  variable: "--font-genera",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={`${segoeUI.className} relative`}>
+    <body className={`${genera.className} relative`}>
     <ContextProviders>
       <Header/>
       {children}
