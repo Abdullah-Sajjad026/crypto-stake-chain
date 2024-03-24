@@ -18,10 +18,7 @@ const Header = () => {
     >
       <div className="container flex justify-between items-center ">
         <div className="flex items-center gap-2">
-          <Image src={ASSETS.logo1x} alt="Logo" width={50} height={50}/>
-          <span>
-            100K <br/> Stake
-          </span>
+          <Image src={ASSETS.logo1x} alt="Logo" width={80} height={80}/>
         </div>
         <div className="flex gap-4 items-center">
           <div className="hidden xl:inline">

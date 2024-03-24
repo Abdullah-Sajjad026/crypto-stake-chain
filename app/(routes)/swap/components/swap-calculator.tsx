@@ -9,6 +9,8 @@ import InputWithSelect from "@/components/ui/input-with-select";
 import ASSETS from "@/app/assets";
 import {SelectOption} from "@/components/ui/select";
 import {MarketTokenItem} from "@/app/actions/token-actions";
+import {useWeb3ModalAccount, useWeb3ModalProvider} from "@web3modal/ethers/react";
+import {BrowserProvider} from "ethers";
 
 const SwapCalculator = ({
                           token1Id, token2Id, setToken1Id, setToken2Id, tokensData
@@ -19,6 +21,7 @@ const SwapCalculator = ({
   setToken2Id: (token: string) => void,
   tokensData: MarketTokenItem[]
 }) => {
+  const {address, chainId, isConnected} = useWeb3ModalAccount()
 
   const [token1Input, setToken1Input] = useState<number>(1);
 
@@ -41,7 +44,6 @@ const SwapCalculator = ({
     } else return 0;
   }
 
-
   const getPricesString = (token1: string, token2: string) => {
     const token1Symbol = tokensData.find(token => token.id === token1)?.symbol;
     const token2Symbol = tokensData.find(token => token.id === token2)?.symbol;
@@ -59,7 +61,6 @@ const SwapCalculator = ({
           <TabsTrigger value="limit">Limit</TabsTrigger>
         </TabsList>
         <TabsContent value="swap" className="mt-4">
-
           <div>
             <InputWithSelect
               label="Your Sell"
@@ -113,7 +114,6 @@ const SwapCalculator = ({
         </TabsContent>
 
         <TabsContent value="limit">
-
           <div>
             <InputWithSelect
               label="Your Sell"
@@ -164,7 +164,13 @@ const SwapCalculator = ({
         </TabsContent>
       </Tabs>
 
-      <Button className="w-full mt-8 rounded-full">Connect Wallet</Button>
+      <div className="mt-8 flex justify-center">
+        {!isConnected ? <w3m-button/> : <Button className="w-full rounded-full">
+          Swap
+        </Button>}
+      </div>
+
+      {/*<Button className="w-full mt-8 rounded-full">Connect Wallet</Button>*/}
       <p className="text-muted-foreground text-center mx-auto mt-4">
         By using the site and creating an exchange, you agree to the Fixed 100K Stake&apos;s Terms of Services and
         Privacy
