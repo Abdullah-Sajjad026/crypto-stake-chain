@@ -9,10 +9,12 @@ import InputWithSelect from "@/components/ui/input-with-select";
 import ASSETS from "@/app/assets";
 import {SelectOption} from "@/components/ui/select";
 import {MarketTokenItem} from "@/app/actions/token-actions";
+import axios from 'axios'
 import {useWeb3ModalAccount, useWeb3ModalProvider} from "@web3modal/ethers/react";
 import {BrowserProvider} from "ethers";
 
-const SwapCalculator = ({
+const SwapCalculator = (
+  {
                           token1Id, token2Id, setToken1Id, setToken2Id, tokensData
                         }: {
   token1Id: string,
@@ -21,7 +23,7 @@ const SwapCalculator = ({
   setToken2Id: (token: string) => void,
   tokensData: MarketTokenItem[]
 }) => {
-  const {address, chainId, isConnected} = useWeb3ModalAccount()
+  const {address: walletAddress, chainId, isConnected} = useWeb3ModalAccount()
 
   const [token1Input, setToken1Input] = useState<number>(1);
 
@@ -51,6 +53,32 @@ const SwapCalculator = ({
     if (token1Symbol && token2Symbol) {
       return `1 ${token1Symbol.toUpperCase()} ≈ ${onesPriceInTwo(token1, token2).toFixed(2)} ${token2Symbol.toUpperCase()}`
     }
+  }
+
+  const swapCoins = async () => {
+    // Check for allowance 1inch
+    const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
+
+    if(allowance.data.allowance === "0"){
+
+      const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
+
+      setTxDetails(approve.data);
+      console.log("not approved")
+      return
+
+    }
+
+    const tx = await axios.get(
+      `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+    )
+
+    let decimals = Number(`1E${tokenTwo.decimals}`)
+    setTokenTwoAmount((Number(tx.data.toTokenAmount)/decimals).toFixed(2));
+
+    setTxDetails(tx.data.tx);
+
+
   }
 
   return (
