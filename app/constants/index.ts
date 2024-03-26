@@ -6,31 +6,36 @@ export const AppNetworks = [
     isActive: true,
     label: "Ethereum",
     value: "eth",
-    icon: ASSETS.icons.eth
+    icon: ASSETS.icons.eth,
+    chainId: 1
   },
   {
     isActive: true,
     label: "Binance Smart Chain",
     value: "bnb-chain",
-    icon: ASSETS.icons.bnbChain
+    icon: ASSETS.icons.bnbChain,
+    chainId: 56
   },
   {
     isActive: false,
     label: "Aptos",
     value: "aptos",
-    icon: ASSETS.icons.aptos
+    icon: ASSETS.icons.aptos,
+    chainId: 43114
   },
   {
     isActive: false,
     label: "Arbitrum",
     value: "arbitrum",
-    icon: ASSETS.icons.arbitrum
+    icon: ASSETS.icons.arbitrum,
+    chainId: 42161
   },
   {
     isActive: false,
     label: "Optimism",
     value: "optimism",
-    icon: ASSETS.icons.optimism
+    icon: ASSETS.icons.optimism,
+    chainId: 10
   }
 ]
 
@@ -46,3 +51,5 @@ export const NetworkSupportedTokens = {
     "ethereum", "weth", "tether", "usd-coin", "uniswap", "chainlink", "wrapped-bitcoin", "apecoin"
   ]
 }
+
+export const oneInchSwapBaseUrl = "https://api.1inch.dev/swap/v6.0";
