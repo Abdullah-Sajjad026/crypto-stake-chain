@@ -1,4 +1,5 @@
 import ASSETS from "@/app/assets";
+import {abiEthStakingContract} from "@/app/constants/contract-abis";
 
 export type TSupportedToken = {
   id: string,
@@ -128,6 +129,7 @@ export const poolsMap = {
     symbol: "ETH",
     tokenContract: "0xfFb78b2D039dfa18eDABbF93A987Fc3D9094aFdd",
     poolContract: "0xEE2b31B564E5B7D3E5f71Ad5cdfD54B5Ef52D8eC",
+    poolAbi: abiEthStakingContract,
     pools: [
       {
         days: 14,

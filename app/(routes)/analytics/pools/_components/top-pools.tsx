@@ -1,11 +1,8 @@
 'use client';
 
 import {Card} from "@/components/ui/card";
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
-import {ColumnDef, flexRender, getCoreRowModel, useReactTable} from "@tanstack/react-table";
 import Link from "next/link";
 import Image from "next/image";
-
 
 const TopPools = (
   {
@@ -54,7 +51,6 @@ const TopPools = (
             </div>
           ))
         }
-
       </Card>
     </section>
   )
