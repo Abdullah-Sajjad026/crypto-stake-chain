@@ -42,12 +42,13 @@ export type MarketTokenItem =
   }
 
 
-export async function getTokensMarketData({
-                                            page = 1,
-                                            vsCurrency = 'usd',
-                                            order = 'market_cap_desc',
-                                            ids = AllSupportedTokens.join(",")
-                                          }) {
+export async function getTokensMarketData(
+  {
+    page = 1,
+    vsCurrency = 'usd',
+    order = 'market_cap_desc',
+    ids = AllSupportedTokens.join(",")
+  }) {
   const url = new URL('https://api.coingecko.com/api/v3/coins/markets');
   const params = {
     ids,

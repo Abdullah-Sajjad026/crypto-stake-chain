@@ -9,21 +9,25 @@ import InputWithSelect from "@/components/ui/input-with-select";
 import ASSETS from "@/app/assets";
 import {SelectOption} from "@/components/ui/select";
 import {MarketTokenItem} from "@/app/actions/token-actions";
-import axios from 'axios'
 import {useWeb3ModalAccount, useWeb3ModalProvider} from "@web3modal/ethers/react";
 import {BrowserProvider} from "ethers";
+import {checkAllowance} from "../_actions";
+import {NetworkSupportedTokens, TSupportedToken} from "@/app/constants";
+import {useAppConfig} from "@/hooks/use-app-config";
 
 const SwapCalculator = (
   {
-                          token1Id, token2Id, setToken1Id, setToken2Id, tokensData
-                        }: {
-  token1Id: string,
-  token2Id: string,
-  setToken1Id: (token: string) => void,
-  setToken2Id: (token: string) => void,
-  tokensData: MarketTokenItem[]
-}) => {
+    token1, token2, setToken1, setToken2, tokensData
+  }: {
+    token1: TSupportedToken,
+    token2: TSupportedToken,
+    setToken1: (token: TSupportedToken) => void,
+    setToken2: (token: TSupportedToken) => void,
+    tokensData: MarketTokenItem[]
+  }) => {
   const {address: walletAddress, chainId, isConnected} = useWeb3ModalAccount()
+  const appNetwork = useAppConfig().selectedNetwork;
+  const availableTokens = NetworkSupportedTokens[appNetwork.value as keyof typeof NetworkSupportedTokens]
 
   const [token1Input, setToken1Input] = useState<number>(1);
 
@@ -56,29 +60,27 @@ const SwapCalculator = (
   }
 
   const swapCoins = async () => {
+    console.log({tokensData})
     // Check for allowance 1inch
-    const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
+    const res = await checkAllowance(token1.address, walletAddress!)
+    console.log(res);
 
-    if(allowance.data.allowance === "0"){
-
-      const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
-
-      setTxDetails(approve.data);
-      console.log("not approved")
-      return
-
-    }
-
-    const tx = await axios.get(
-      `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
-    )
-
-    let decimals = Number(`1E${tokenTwo.decimals}`)
-    setTokenTwoAmount((Number(tx.data.toTokenAmount)/decimals).toFixed(2));
-
-    setTxDetails(tx.data.tx);
-
-
+    // if (allowance.data.allowance === "0") {
+    //   const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
+    //
+    //   setTxDetails(approve.data);
+    //   console.log("not approved")
+    //   return
+    // }
+    //
+    // const tx = await axios.get(
+    //   `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+    // )
+    //
+    // let decimals = Number(`1E${tokenTwo.decimals}`)
+    // setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
+    //
+    // setTxDetails(tx.data.tx);
   }
 
   return (
@@ -94,8 +96,10 @@ const SwapCalculator = (
               label="Your Sell"
               selectOptions={tokensOptions}
               selectProps={{
-                value: token1Id,
-                onValueChange: (value: string) => setToken1Id(value)
+                value: token1.id,
+                onValueChange: (value: string) => {
+                  setToken1(availableTokens.find(token => token.id === value)!)
+                }
 
               }}
               inputProps={{
@@ -106,7 +110,7 @@ const SwapCalculator = (
             <div className="flex justify-between text-muted-foreground text-sm mt-2">
               <span>
                 {
-                  getPricesString(token1Id, token2Id)
+                  getPricesString(token1.id, token2.id)
                 }
               </span>
             </div>
@@ -122,20 +126,22 @@ const SwapCalculator = (
               label="Your Buy"
               selectOptions={tokensOptions}
               selectProps={{
-                value: token2Id,
-                onValueChange: (value: string) => setToken2Id(value)
+                value: token2.id,
+                onValueChange: (value: string) => {
+                  setToken2(availableTokens.find(token => token.id === value)!)
+                }
               }}
               inputProps={{
-                value: token1Input * onesPriceInTwo(token1Id, token2Id),
+                value: token1Input * onesPriceInTwo(token1.id, token2.id),
                 readOnly: true
               }}
             />
             <div className="flex justify-between text-muted-foreground text-sm mt-2">
-              <span>
-                {
-                  getPricesString(token2Id, token1Id)
-                }
-              </span>
+                <span>
+              {
+                getPricesString(token2.id, token1.id)
+              }
+          </span>
             </div>
           </div>
 
@@ -147,8 +153,10 @@ const SwapCalculator = (
               label="Your Sell"
               selectOptions={tokensOptions}
               selectProps={{
-                value: token1Id,
-                onValueChange: (value: string) => setToken1Id(value)
+                value: token1.id,
+                onValueChange: (value: string) => {
+                  setToken1(availableTokens.find(token => token.id === value)!)
+                }
               }}
               inputProps={{
                 value: token1Input,
@@ -158,7 +166,7 @@ const SwapCalculator = (
             />
             <div className="flex justify-between text-muted-foreground text-sm mt-2">
               <span>
-                {getPricesString(token1Id, token2Id)}
+                {getPricesString(token1.id, token2.id)}
               </span>
             </div>
           </div>
@@ -172,17 +180,19 @@ const SwapCalculator = (
               label="Your Buy"
               selectOptions={tokensOptions}
               selectProps={{
-                value: token2Id,
-                onValueChange: (value: string) => setToken2Id(value)
+                value: token2.id,
+                onValueChange: (value: string) => {
+                  setToken2(availableTokens.find(token => token.id === value)!)
+                }
               }}
               inputProps={{
-                value: token1Input * onesPriceInTwo(token1Id, token2Id),
+                value: token1Input * onesPriceInTwo(token1.id, token2.id),
                 readOnly: true
               }}
             />
             <div className="flex justify-between text-muted-foreground text-sm mt-2">
               <span>
-                {getPricesString(token2Id, token1Id)}
+                {getPricesString(token2.id, token1.id)}
               </span>
             </div>
           </div>
@@ -193,12 +203,13 @@ const SwapCalculator = (
       </Tabs>
 
       <div className="mt-8 flex justify-center">
-        {!isConnected ? <w3m-button/> : <Button className="w-full rounded-full">
+        {!isConnected ? <w3m-button/> : <Button className="w-full rounded-full" onClick={swapCoins}>
           Swap
         </Button>}
       </div>
 
-      {/*<Button className="w-full mt-8 rounded-full">Connect Wallet</Button>*/}
+      {/*<Button className="w-full mt-8 rounded-full">Connect Wallet</Button>*/
+      }
       <p className="text-muted-foreground text-center mx-auto mt-4">
         By using the site and creating an exchange, you agree to the Fixed 100K Stake&apos;s Terms of Services and
         Privacy

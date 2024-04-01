@@ -11,12 +11,15 @@ import TokenPricesHistoryChart
   from "@/app/components/token-charts/token-prices-history-chart";
 
 
-const CoinsCharts = ({
-                       token1, token2
-                     }: {
-  token1: MarketTokenItem,
-  token2: MarketTokenItem
-}) => {
+const CoinsCharts = (
+  {
+    token1, token2
+  }: {
+    token1: MarketTokenItem,
+    token2: MarketTokenItem
+  }) => {
+  console.log(token1, token2);
+  
   const [openedCoin, setOpenedCoin] = useState<string>(token1.id);
 
   const {isLoading, isSuccess, isError, error, data: tokenCharts} = useQuery({
