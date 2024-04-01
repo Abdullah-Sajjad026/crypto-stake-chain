@@ -10,11 +10,12 @@ interface DataTableProps<TData, TValue> {
   pageNo?: number;
 }
 
-export default function TopTokensTable<TData, TValue>({
-                                                        data,
-                                                        columns,
-                                                        pageNo = 1
-                                                      }: DataTableProps<TData, TValue>) {
+export default function TopTokensTable<TData, TValue>(
+  {
+    data,
+    columns,
+    pageNo = 1
+  }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,

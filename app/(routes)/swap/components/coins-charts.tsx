@@ -18,8 +18,6 @@ const CoinsCharts = (
     token1: MarketTokenItem,
     token2: MarketTokenItem
   }) => {
-  console.log(token1, token2);
-  
   const [openedCoin, setOpenedCoin] = useState<string>(token1.id);
 
   const {isLoading, isSuccess, isError, error, data: tokenCharts} = useQuery({

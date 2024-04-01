@@ -1,7 +1,11 @@
 import {Card} from "@/components/ui/card";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
+import PoolsListing from "@/app/(routes)/pools/_components/pools-listing";
+import {getTokensMarketData} from "@/app/actions/token-actions";
 
-export default function Page() {
+export default async function Page() {
+
+  const topTokens = await getTokensMarketData({})
+
   return (
     <section className="pt-32 pb-12 main-bg min-h-screen">
       <div className="container">
@@ -20,27 +24,11 @@ export default function Page() {
           </div>
 
           <section className="mt-8">
-            <Accordion type="single" collapsible>
-
-              <AccordionItem value={`pool-14-eth`} className="border-0 outline-0">
-                <AccordionTrigger className="m-0 p-4 rounded-lg bg-primary-light ">
-                  <div className="w-full flex justify-between items-center gap-4">
-                    <div>
-                      <h4 className="text-sm font-medium">ETH 14-Day Staking Pool</h4>
-                    </div>
-                    <div>
-
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="m-0 p-0">
-                  <div className="p-4 bg-red-500">
-                    Content Here
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-            </Accordion>
+            {
+              topTokens && (
+                <PoolsListing tokensData={topTokens}/>
+              )
+            }
           </section>
 
         </Card>

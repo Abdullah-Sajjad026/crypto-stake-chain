@@ -26,11 +26,12 @@ export const metadata: Metadata = {
     "100k Stake is a decentralized platform for staking and yield farming.",
 };
 
-export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout(
+  {
+    children,
+  }: Readonly<{
+    children: React.ReactNode;
+  }>) {
   return (
     <html lang="en">
     <body className={`${genera.className} relative`}>

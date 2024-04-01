@@ -123,8 +123,9 @@ export const NetworkSupportedTokens = {
   ]
 }
 
-const poolsMap = {
+export const poolsMap = {
   "ethereum": {
+    symbol: "ETH",
     tokenContract: "0xfFb78b2D039dfa18eDABbF93A987Fc3D9094aFdd",
     poolContract: "0xEE2b31B564E5B7D3E5f71Ad5cdfD54B5Ef52D8eC",
     pools: [

@@ -26,7 +26,6 @@ const TopTokens = async ({pageNo = 1}: {
             </div>
           )
         }
-
       </Card>
     </section>
   )
