@@ -124,11 +124,26 @@ export const NetworkSupportedTokens = {
   ]
 }
 
-export const poolsMap = {
+export type TTokenPools = {
+  symbol: string,
+  tokenContract: `0x${string}`,
+  poolContract: `0x${string}`,
+  poolAbi: any,
+  pools: {
+    days: number,
+    min: number,
+    max: number,
+    profit: number
+  }[]
+}
+
+export const poolsMap: {
+  [key: string]: TTokenPools
+} = {
   "ethereum": {
     symbol: "ETH",
     tokenContract: "0xfFb78b2D039dfa18eDABbF93A987Fc3D9094aFdd",
-    poolContract: "0xEE2b31B564E5B7D3E5f71Ad5cdfD54B5Ef52D8eC",
+    poolContract: "0x341fc334ac9AEc5a2FB852b40d918b99c65e4173",
     poolAbi: abiEthStakingContract,
     pools: [
       {
